@@ -13,23 +13,23 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
    <children>
-      <AnchorPane prefHeight="392.0" prefWidth="438.0" style="-fx-background-color: #9FB4C6;">
+      <AnchorPane prefHeight="392.0" prefWidth="438.0" style="-fx-background-color: #EE886B#EE886B;">
          <children>
-            <Label fx:id="welcomeText" layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="400.0" text="Добро пожаловать в музыкальное приложение " textAlignment="CENTER">
+            <Label fx:id="welcomeText" layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="400.0" text="Добро пожаловать в музыкальное приложение " textAlignment="CENTER" textFill="#1c2b47">
                <font>
                   <Font name="Lato Regular" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="loginConnect" layoutX="116.0" layoutY="207.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="211.0" style="-fx-background-color: #fff;" text="Войти в систему" />
-            <Button cancelButton="true" layoutX="116.0" layoutY="272.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="211.0" style="-fx-background-color: #fff;" text="Закрыть приложение" />
+            <Button fx:id="loginButton" layoutX="116.0" layoutY="207.0" mnemonicParsing="false" onAction="#onLoginConnectButtonClick" prefHeight="45.0" prefWidth="211.0" style="-fx-background-color: #1C2B47#1C2B47;" text="Войти в систему" textFill="WHITE" />
+            <Button fx:id="exitButton" cancelButton="true" layoutX="116.0" layoutY="272.0" mnemonicParsing="false" onAction="#onExitButton" prefHeight="45.0" prefWidth="211.0" style="-fx-background-color: #1C2B47#1C2B47;" text="Закрыть приложение" textFill="WHITE" />
             <TextField layoutX="116.0" layoutY="79.0" prefHeight="26.0" prefWidth="211.0" />
             <TextField layoutX="116.0" layoutY="133.0" prefHeight="26.0" prefWidth="211.0" />
-            <Label layoutX="17.0" layoutY="80.0" prefHeight="20.0" prefWidth="108.0" text="Логин">
+            <Label layoutX="20.0" layoutY="80.0" prefHeight="20.0" prefWidth="108.0" text="Логин" textFill="#1c2b47">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="137.0" prefHeight="20.0" prefWidth="108.0" text="Пароль">
+            <Label layoutX="18.0" layoutY="137.0" prefHeight="20.0" prefWidth="108.0" text="Пароль" textFill="#1c2b47">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
