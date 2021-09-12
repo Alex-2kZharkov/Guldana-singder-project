@@ -3,6 +3,7 @@ package com.example.guldanasingersproject;
 import com.example.guldanasingersproject.DatabaseConnection.DatabaseConnection;
 import com.example.guldanasingersproject.MenuPage.MenuPage;
 import com.example.guldanasingersproject.Windows.AlertWindow;
+import com.example.guldanasingersproject.Windows.ConfirmationWindow;
 import com.example.guldanasingersproject.Windows.ErrorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,12 +66,7 @@ public class HelloController {
     }
 
     public void onExitButton() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Подтвердите действие");
-        alert.setHeaderText("Закрытие приложения");
-        alert.setContentText("Вы уверены, что ходите закрыть приложение?");
-
-        Optional<ButtonType> result = alert.showAndWait();
+        Optional<ButtonType> result = new ConfirmationWindow().showConfirmationWindow("Закрытие приложения", "Вы уверены, что ходите закрыть приложение?");
         if (result.get() == ButtonType.OK){
             System.exit(1);
         }
