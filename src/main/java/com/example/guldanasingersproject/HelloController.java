@@ -1,14 +1,17 @@
 package com.example.guldanasingersproject;
 
 import com.example.guldanasingersproject.DatabaseConnection.DatabaseConnection;
+import com.example.guldanasingersproject.MenuPage.MenuPage;
 import com.example.guldanasingersproject.Windows.AlertWindow;
 import com.example.guldanasingersproject.Windows.ErrorWindow;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -24,7 +27,7 @@ public class HelloController {
     @FXML
     private TextField passwordField;
 
-    public void onLoginConnectButtonClick() {
+    public void onLoginConnectButtonClick(ActionEvent event) throws IOException {
         DatabaseConnection dbConnection = new DatabaseConnection();
         Connection dbLink = dbConnection.getDatabaseLink();
         String login = loginField.getText();
@@ -50,6 +53,7 @@ public class HelloController {
 
                 if (actualLogin.equals(login) && actualPassword.equals(password)) {
                     System.out.println("Мы узнали вас");
+                    new MenuPage().setMenuScene(event);
                     return;
                 }
                 new ErrorWindow().showWindow("Вход в систему", "Вы ввели неправильный логин или пароль. Проверьте ввод и попробуйте еще раз");

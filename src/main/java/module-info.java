@@ -13,4 +13,6 @@ module com.example.guldanasingersproject {
 
     opens com.example.guldanasingersproject to javafx.fxml;
     exports com.example.guldanasingersproject;
+    exports com.example.guldanasingersproject.MenuPage;
+    opens com.example.guldanasingersproject.MenuPage to javafx.fxml;
 }
