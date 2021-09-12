@@ -52,10 +52,11 @@ public class HelloController {
                 String actualLogin = resultSet.getString("login");
                 String actualPassword = resultSet.getString("password");
 
-                if (actualLogin.equals(login) && actualPassword.equals(password)) {
-                    System.out.println("Мы узнали вас");
-                    new MenuPage().setMenuScene(event);
-                    return;
+                if (actualLogin != null && actualPassword != null) {
+                    if (actualLogin.equals(login) && actualPassword.equals(password)) {
+                        new MenuPage().setMenuScene(event);
+                        return;
+                    }
                 }
                 new ErrorWindow().showWindow("Вход в систему", "Вы ввели неправильный логин или пароль. Проверьте ввод и попробуйте еще раз");
 
