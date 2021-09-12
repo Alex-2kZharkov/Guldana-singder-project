@@ -2,6 +2,7 @@ package com.example.guldanasingersproject;
 
 import com.example.guldanasingersproject.DatabaseConnection.DatabaseConnection;
 import com.example.guldanasingersproject.Windows.AlertWindow;
+import com.example.guldanasingersproject.Windows.ErrorWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -51,7 +52,7 @@ public class HelloController {
                     System.out.println("Мы узнали вас");
                     return;
                 }
-                new AlertWindow().showErrorWindow("Вход в систему", "Вы ввели неправильный логин или пароль. Проверьте ввод и попробуйте еще раз");
+                new ErrorWindow().showWindow("Вход в систему", "Вы ввели неправильный логин или пароль. Проверьте ввод и попробуйте еще раз");
 
             }
         } catch (Exception error) {
