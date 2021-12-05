@@ -1,7 +1,10 @@
 package com.example.guldanasingersproject.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import com.example.guldanasingersproject.Entities.SingerEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.*;
 
 public class DatabaseConnection {
     public Connection databaseLink;
@@ -19,5 +22,25 @@ public class DatabaseConnection {
             err.printStackTrace();
         }
         return databaseLink;
+    }
+
+    public ObservableList<SingerEntity> getSingers(Connection connection) throws SQLException {
+        try {
+            ObservableList<SingerEntity> singers = FXCollections.observableArrayList();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id, name FROM singers");
+
+            while (resultSet.next()) {
+                SingerEntity singer  = new SingerEntity(
+                        Integer.parseInt(resultSet.getString("id")),
+                        resultSet.getString("name"));
+                singers.add(singer);
+            }
+            return singers;
+        } catch (Exception error) {
+            error.printStackTrace();
+            return null;
+        }
+
     }
 }

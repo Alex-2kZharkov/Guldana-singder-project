@@ -12,8 +12,9 @@ import java.io.IOException;
 public class HelloApplication extends Application implements EventHandler<ActionEvent> {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 438, 392);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu-page.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 438, 587);
+        Scene scene = new Scene(fxmlLoader.load(), 590, 550);
         stage.setTitle("Музыкальное приложение");
         stage.setScene(scene);
         stage.show();

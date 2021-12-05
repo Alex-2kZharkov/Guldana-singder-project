@@ -7,10 +7,15 @@ import com.example.guldanasingersproject.Windows.ConfirmationWindow;
 import com.example.guldanasingersproject.Windows.ErrorWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -71,5 +76,21 @@ public class HelloController {
         if (result.get() == ButtonType.OK){
             System.exit(1);
         }
+    }
+
+    public void openSingersPage(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage parentStage = (Stage) node.getScene().getWindow();
+
+//        parentStage.close();
+        Stage dialog = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("singers-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 579, 612);
+        dialog.initOwner(parentStage);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Певцы");
+        dialog.setScene(scene);
+        dialog.showAndWait();
     }
 }
