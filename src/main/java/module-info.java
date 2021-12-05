@@ -15,5 +15,7 @@ module com.example.guldanasingersproject {
     exports com.example.guldanasingersproject;
     exports com.example.guldanasingersproject.MenuPage;
     exports com.example.guldanasingersproject.SingersPage;
+    exports com.example.guldanasingersproject.AlbumsPage;
+    exports com.example.guldanasingersproject.Entities;
     opens com.example.guldanasingersproject.MenuPage to javafx.fxml;
 }

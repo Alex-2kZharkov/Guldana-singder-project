@@ -30,7 +30,7 @@ public class SingersController implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         try {
-//            setInitialValues();
+            setInitialValues();
         } catch (Exception e) {
             e.printStackTrace();
         }

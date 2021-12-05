@@ -1,5 +1,6 @@
 package com.example.guldanasingersproject.DatabaseConnection;
 
+import com.example.guldanasingersproject.Entities.AlbumEntity;
 import com.example.guldanasingersproject.Entities.SingerEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,28 @@ public class DatabaseConnection {
                 singers.add(singer);
             }
             return singers;
+        } catch (Exception error) {
+            error.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public ObservableList<AlbumEntity> getAlbums(Connection connection) throws SQLException {
+        try {
+            ObservableList<AlbumEntity> albums = FXCollections.observableArrayList();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT albums.id, title, date_released, name FROM albums LEFT JOIN singers ON albums.singer_id = singers.id");
+
+            while (resultSet.next()) {
+                AlbumEntity album  = new AlbumEntity(
+                        Integer.parseInt(resultSet.getString("id")),
+                        resultSet.getString("title"),
+                        Date.valueOf(resultSet.getString("date_released")),
+                        resultSet.getString("name"));
+                albums.add(album);
+            }
+            return albums;
         } catch (Exception error) {
             error.printStackTrace();
             return null;
