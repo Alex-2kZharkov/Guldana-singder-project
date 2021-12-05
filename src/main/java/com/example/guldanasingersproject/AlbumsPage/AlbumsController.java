@@ -6,6 +6,7 @@ import com.example.guldanasingersproject.Entities.SingerEntity;
 import com.example.guldanasingersproject.Entities.TotalAlbumsFields;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -14,12 +15,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AlbumsController implements Initializable {
 
@@ -103,4 +110,19 @@ public class AlbumsController implements Initializable {
         pieChart.setTitle("Количество альбомов у певцов");
     }
 
+    public void printReport() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                HashMap parameters = new HashMap();
+                JasperPrint jp = JasperFillManager.fillReport("/Users/alex/JaspersoftWorkspace/FInalMusicPortal/Albums.jasper", parameters, new DatabaseConnection().getDatabaseLink());
+                JasperViewer viewer = new JasperViewer(jp, false);
+                viewer.setVisible(true);
+                return null;
+            }
+        };
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.execute(task);
+        service.shutdown();
+    }
 }

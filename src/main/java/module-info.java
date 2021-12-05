@@ -3,6 +3,7 @@ module com.example.guldanasingersproject {
     requires javafx.fxml;
     requires javafx.web;
     requires java.sql;
+    requires jasperreports;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
