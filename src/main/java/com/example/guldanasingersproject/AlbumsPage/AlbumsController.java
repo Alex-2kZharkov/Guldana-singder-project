@@ -3,9 +3,12 @@ package com.example.guldanasingersproject.AlbumsPage;
 import com.example.guldanasingersproject.DatabaseConnection.DatabaseConnection;
 import com.example.guldanasingersproject.Entities.AlbumEntity;
 import com.example.guldanasingersproject.Entities.SingerEntity;
+import com.example.guldanasingersproject.Entities.TotalAlbumsFields;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,6 +62,9 @@ public class AlbumsController implements Initializable {
     @FXML
     public TextField currentName;
 
+    @FXML
+    public PieChart pieChart;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -78,5 +84,23 @@ public class AlbumsController implements Initializable {
         Connection connection = dbConnection.getDatabaseLink();
         ObservableList<AlbumEntity> albums  = dbConnection.getAlbums(connection);
         tableView.setItems(albums);
+
+        setPieChartValues();
     }
+
+    public void setPieChartValues() throws SQLException {
+        DatabaseConnection dbConnection = new DatabaseConnection();
+        Connection connection = dbConnection.getDatabaseLink();
+        ObservableList<TotalAlbumsFields> albums  = dbConnection.getTotalAlbumsFields(connection);
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        for (int i = 0; i < albums.size(); i++) {
+            pieChartData.add(new PieChart.Data(albums.get(i).name + " - " + albums.get(i).count, albums.get(i).count));
+        }
+
+        pieChart.setData(pieChartData);
+        pieChart.setTitle("Количество альбомов у певцов");
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.guldanasingersproject.DatabaseConnection;
 
 import com.example.guldanasingersproject.Entities.AlbumEntity;
 import com.example.guldanasingersproject.Entities.SingerEntity;
+import com.example.guldanasingersproject.Entities.TotalAlbumsFields;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -60,6 +61,26 @@ public class DatabaseConnection {
                 albums.add(album);
             }
             return albums;
+        } catch (Exception error) {
+            error.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public ObservableList<TotalAlbumsFields> getTotalAlbumsFields(Connection connection) throws SQLException {
+        try {
+            ObservableList<TotalAlbumsFields> totalAlbums = FXCollections.observableArrayList();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT name, COUNT(name) as count FROM albums LEFT JOIN singers ON albums.singer_id = singers.id GROUP BY name");
+
+            while (resultSet.next()) {
+                TotalAlbumsFields album  = new TotalAlbumsFields(
+                        Integer.parseInt(resultSet.getString("count")),
+                        resultSet.getString("name"));
+                totalAlbums.add(album);
+            }
+            return totalAlbums;
         } catch (Exception error) {
             error.printStackTrace();
             return null;

@@ -100,7 +100,7 @@ public class HelloController {
         Stage dialog = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("albums-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 976, 717);
+        Scene scene = new Scene(fxmlLoader.load(), 976, 1158);
         dialog.initOwner(parentStage);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Альбомы");
