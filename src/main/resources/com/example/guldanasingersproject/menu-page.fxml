@@ -14,7 +14,7 @@
             <Font name="Lato Medium" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="openAlbumsPageButton" layoutX="311.0" layoutY="180.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="234.0" style="-fx-background-color: #283C7B#283C7B;" text="Альбомы" textFill="WHITE">
+      <Button fx:id="openAlbumsPageButton" layoutX="311.0" layoutY="180.0" mnemonicParsing="false" onAction="#openAlbumsPage" prefHeight="55.0" prefWidth="234.0" style="-fx-background-color: #283C7B#283C7B;" text="Альбомы" textFill="WHITE">
          <font>
             <Font name="Lato Medium" size="16.0" />
          </font>

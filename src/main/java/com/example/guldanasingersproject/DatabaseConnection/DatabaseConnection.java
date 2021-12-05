@@ -55,7 +55,7 @@ public class DatabaseConnection {
                 AlbumEntity album  = new AlbumEntity(
                         Integer.parseInt(resultSet.getString("id")),
                         resultSet.getString("title"),
-                        Date.valueOf(resultSet.getString("date_released")),
+                        resultSet.getString("date_released"),
                         resultSet.getString("name"));
                 albums.add(album);
             }

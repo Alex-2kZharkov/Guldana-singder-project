@@ -82,7 +82,6 @@ public class HelloController {
         Node node = (Node) event.getSource();
         Stage parentStage = (Stage) node.getScene().getWindow();
 
-//        parentStage.close();
         Stage dialog = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("singers-page.fxml"));
@@ -90,6 +89,21 @@ public class HelloController {
         dialog.initOwner(parentStage);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Певцы");
+        dialog.setScene(scene);
+        dialog.showAndWait();
+    }
+
+    public void openAlbumsPage(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage parentStage = (Stage) node.getScene().getWindow();
+
+        Stage dialog = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("albums-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 976, 717);
+        dialog.initOwner(parentStage);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Альбомы");
         dialog.setScene(scene);
         dialog.showAndWait();
     }

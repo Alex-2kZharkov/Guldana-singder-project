@@ -1,21 +1,82 @@
 package com.example.guldanasingersproject.AlbumsPage;
 
+import com.example.guldanasingersproject.DatabaseConnection.DatabaseConnection;
+import com.example.guldanasingersproject.Entities.AlbumEntity;
+import com.example.guldanasingersproject.Entities.SingerEntity;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AlbumsController implements Initializable {
+
+    @FXML
+    public Button addAlbumButton;
+
+    @FXML
+    public Button updateAlbumButton;
+
+    @FXML
+    public Button deleteAlbumButton;
+
+    @FXML
+    public Button printReportButton;
+
+    @FXML
+    public TableView<AlbumEntity> tableView;
+
+    @FXML
+    public TableColumn<AlbumEntity, InternalError> id;
+
+    @FXML
+    public TableColumn<AlbumEntity, String> title;
+
+    @FXML
+    public TableColumn<AlbumEntity, String> date_released;
+
+    @FXML
+    public TableColumn<AlbumEntity, String> name;
+
+    @FXML
+    public TextField currentId;
+
+    @FXML
+    public TextField currentTitle;
+
+    @FXML
+    public TextField currentReleasedDate;
+
+    @FXML
+    public TextField currentName;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        date_released.setCellValueFactory(new PropertyValueFactory<>("date_released"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         try {
-//            setInitialValues();
+            setInitialValues();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setInitialValues() throws SQLException {
+        DatabaseConnection dbConnection = new DatabaseConnection();
+        Connection connection = dbConnection.getDatabaseLink();
+        ObservableList<AlbumEntity> albums  = dbConnection.getAlbums(connection);
+        tableView.setItems(albums);
     }
 }

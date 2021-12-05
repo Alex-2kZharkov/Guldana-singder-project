@@ -5,7 +5,7 @@ import java.util.Date;
 public class AlbumEntity {
     public Integer id;
     public String title;
-    public Date date_released;
+    public String date_released;
 
     public void setId(Integer id) {
         this.id = id;
@@ -15,7 +15,7 @@ public class AlbumEntity {
         this.title = title;
     }
 
-    public void setDate_released(Date date_released) {
+    public void setDate_released(String date_released) {
         this.date_released = date_released;
     }
 
@@ -31,7 +31,7 @@ public class AlbumEntity {
         return title;
     }
 
-    public Date getDate_released() {
+    public String getDate_released() {
         return date_released;
     }
 
@@ -39,7 +39,7 @@ public class AlbumEntity {
         return name;
     }
 
-    public AlbumEntity(Integer id, String title, Date date_released, String name) {
+    public AlbumEntity(Integer id, String title, String date_released, String name) {
         this.id = id;
         this.title = title;
         this.date_released = date_released;
